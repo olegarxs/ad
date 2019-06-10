@@ -19,8 +19,7 @@ const connection = mysql.createPool({
 
 router.get('/',(req, res) => {
 
-    connection.query('select * from categories', (err, category) => {
-        
+    connection.query('select * from categories', (err, category) => {        
         if(err) {
             return console.log(err);
         }
@@ -28,6 +27,16 @@ router.get('/',(req, res) => {
     })
 });
 
+router.post('/delete/:id', (req, res) => {
+    const id = req.params.id;
+
+    connection.query(`delete from categories where id=${id}`, (err, data) => {
+        if(err) {
+            console.log(err);
+        }
+        res.redirect('/');
+    })
+});
 
 router.get('/addCategory', (req,res) =>{
     connection.query('select * from categories where parent_id IS null', (err, category) => {
@@ -56,6 +65,10 @@ router.post('/addCategory',(req,res) =>{
 router.get('/users', (req, res) => {
     res.render('./admin/users');
 });
+
+router.get('/ad', (req, res) => {
+    res.render('./admin/ad')
+})
 
 
 
