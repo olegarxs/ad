@@ -1,0 +1,12 @@
+<h3>Категориии</h3>
+
+<hr>
+
+{{#each list}}
+<ul class="list-group col-lg-4">
+  <li class="mainCategory active">{{name}}</li>
+  {{#each subcat}}
+  <a href="/cat/{{id}}"><li class="mainCategory_sub">{{name}}</li></a>
+  {{/each}}
+</ul> 
+{{/each}}

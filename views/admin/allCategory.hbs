@@ -1,0 +1,36 @@
+<div class="admin-panel container">
+  {{> buttonsAdmin}}
+  <div class="main container">
+    <div class="button-group">
+      <a type="button" class="btn btn-success" href="/admin/addCategory">Добавить</a>
+      <button type="button" class="btn btn-warning">Редактировать</button>
+      <button type="button" class="btn btn-danger">Удалить</button>
+    </div>
+    <div class="">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Категория</th>
+                <th scope="col" style="text-align: center">Родитель</th>
+                <th scope="col" style="text-align: center">Действие</th>
+              </tr>
+            </thead>
+            <tbody>
+                {{#each category}}
+                  <tr>
+                    <td>{{id}}</td>
+                    <td>{{title}}</td>
+                    {{#if parent_id}}
+                      <td style="text-align: center">{{parent_id}}</td>
+                    {{else}}
+                      <td style="text-align: center">-</td>
+                    {{/if}}
+                    <td style="text-align: center"><span class="fa fa-pencil"></span>  <span class="fa fa-trash-o"></span></td>
+                  </tr>
+                {{/each}}
+            </tbody>
+          </table>
+    </div>
+  </div>
+</div>

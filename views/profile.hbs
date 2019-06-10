@@ -1,0 +1,9 @@
+
+
+<p>{{user.username}}</p>
+<p>Почта: {{user.email}}</p>
+{{#with profile}}
+<p>Фамилия и имя: {{first_name}} {{last_name}}</p>
+<p>Дата рождения: {{formatDate birthday day="numeric" month="numeric" year="numeric"}}</p>
+<p>Дата регистрации: {{formatDate dateOfRegistration day="numeric" month="numeric" year="numeric"}}</p>
+{{/with}}

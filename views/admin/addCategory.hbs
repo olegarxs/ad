@@ -1,0 +1,26 @@
+<div class="admin-panel container">
+    {{> buttonsAdmin}}
+    <div class="container">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+        <form action="/admin/addCategory" method="POST">
+            <h2>Добавить категорию:</h2>
+            <label for="">Наименование раздела:</label>
+            <br>
+            <input type="text" name="title">
+            <br>
+            <label for="">Родительский раздел</label>
+            <select class="form-control" id="exampleFormControlSelect1" name="parent">
+                <option></option>
+                {{#each category}}
+                <option>{{title}}</option>
+                {{/each}}
+            </select>
+            <button type="submit" class="btn btn-primary">Добавить</button>
+        </form>
+    </div>
+</div>

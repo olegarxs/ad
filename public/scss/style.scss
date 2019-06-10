@@ -1,0 +1,67 @@
+.admin-panel{
+    display: flex;
+    flex-direction: row;
+}
+.button-group{
+    text-align: end;
+}
+.mainCategory{
+    list-style-type: none;
+    font-size: 14pt;
+    font-weight: 600;
+}
+.mainCategory_sub{
+    list-style-type: none;
+    padding-left: 20px;
+}
+.post{
+    display: flex;
+    $gray: #777;
+    .photo img{
+        max-width: 48px;
+        max-height: 48px;
+    }
+    .description{
+        padding-left: 10px;
+        flex-grow:1;
+    }
+    .description-head__title a{
+        font-weight: 530;
+        color: #004d99;
+    }
+    .cost{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80px;
+        border-right: 1px solid $gray;
+        border-left: 1px solid $gray;
+    }
+    .date{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 160px;
+    }
+    .description-head{
+        display: flex;
+        align-items: center;
+        .description-head__action{
+            position: relative;
+            line-height: 9px;
+            background-color: green;
+            padding: 0 3px;
+            color: white;
+            font-size: 8px;
+            height: 10px;
+            text-transform: uppercase;
+            margin-right: 5px
+        }
+    }
+
+}
+.head-eachCat{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+}

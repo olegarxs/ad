@@ -1,0 +1,27 @@
+<form class="login-form" method="POST" action="/addPost">
+  <div class="form-group">
+    <label for="login">Тема:</label>
+    <input type="text" class="form-control" name="title" aria-describedby="emailHelp">
+  </div>
+  <div class="form-group">
+    <label for="password">Действия:</label>
+    <select class="form-control" name="action">
+      <option>продам</option>
+      <option>куплю</option>
+      <option>обмен</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="password">Цена:</label>
+    <input type="text" class="form-control" name="cost">
+  </div>
+  <div class="form-group">
+    <label for="password">Описание:</label>
+    <textarea type="text" class="form-control" rows="3" name="description"></textarea>
+  </div>
+   <div class="form-group">
+    <label for="exampleFormControlFile1">Добавить фото:</label>
+    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="photo">
+  </div>
+  <button type="submit" class="btn btn-primary">Создать</button>
+</form>

@@ -1,0 +1,107 @@
+.admin-panel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.button-group {
+  text-align: end;
+}
+
+.mainCategory {
+  list-style-type: none;
+  font-size: 14pt;
+  font-weight: 600;
+}
+
+.mainCategory_sub {
+  list-style-type: none;
+  padding-left: 20px;
+}
+
+.post {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.post .photo img {
+  max-width: 48px;
+  max-height: 48px;
+}
+
+.post .description {
+  padding-left: 10px;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+.post .description-head__title a {
+  font-weight: 530;
+  color: #004d99;
+}
+
+.post .cost {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80px;
+  border-right: 1px solid #777;
+  border-left: 1px solid #777;
+}
+
+.post .date {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 160px;
+}
+
+.post .description-head {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.post .description-head .description-head__action {
+  position: relative;
+  line-height: 9px;
+  background-color: green;
+  padding: 0 3px;
+  color: white;
+  font-size: 8px;
+  height: 10px;
+  text-transform: uppercase;
+  margin-right: 5px;
+}
+
+.head-eachCat {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-top: 10px;
+}
+/*# sourceMappingURL=style.css.map */

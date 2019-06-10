@@ -1,0 +1,30 @@
+<div class="head-eachCat">
+    <h3>{{nameCategory}}</h3>
+    {{#if user}}
+    <a href="/addPost/cat/{{id}}" class="button-addPost btn btn-primary">Добавить объявление</a>
+    {{/if}}
+</div>
+
+<hr>
+
+{{#each data}}
+<div class="post shadow p-2 mb-3 bg-white rounded">
+    <div class="photo">
+        <img src="/photo/original/4.png" alt="">
+    </div>
+    <div class="description">
+        <div class="description-head">
+            <div class="description-head__action">{{action}}</div>
+            <div class="description-head__title"><a href="/post/{{id}}">{{title}}</a></div>
+        </div>
+        <div class="description-body">
+            <div class="description-body__text">{{description}}</div>
+            <div class="description-body__region"></div>
+        </div>
+    </div>
+    {{#intl locales="ru-BY"}}
+    <div class="cost">{{cost}} р.</div>
+    <div class="date">{{formatRelative date}}</div> 
+    {{/intl}}
+    </div>
+{{/each}}
