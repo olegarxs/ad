@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3307
--- Время создания: Июн 11 2019 г., 18:25
+-- Время создания: Июн 12 2019 г., 00:25
 -- Версия сервера: 10.3.13-MariaDB
 -- Версия PHP: 7.1.22
 
@@ -101,7 +101,10 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`id`, `user_id`, `post_id`, `date`, `message`) VALUES
-(1, 1, 1, '2019-06-11 18:10:45', 'Класс');
+(1, 1, 1, '2019-06-11 18:10:45', 'Класс'),
+(2, 5, 1, '2019-06-11 21:55:11', 'Лучший телефон всех столетий'),
+(3, 1, 1, '2019-06-11 23:27:34', 'Вау, новый nokia 3310\r\n'),
+(4, 1, 5, '2019-06-11 23:29:40', 'Круто');
 
 -- --------------------------------------------------------
 
@@ -289,7 +292,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT для таблицы `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `posts`
