@@ -1,12 +1,19 @@
-<h3>Категориии</h3>
-
+<div class="headMain">
+  <h3>Категориии</h3>
+  <form action="/search" method="POST" class="search">
+    <input type="text" class="form-control" name="search">
+    <input type="submit" value="Поиск" class="btn btn-primary">
+  </form>
+</div>
 <hr>
 
 {{#each list}}
 <ul class="list-group col-lg-4">
   <li class="mainCategory active">{{name}}</li>
   {{#each subcat}}
-  <a href="/cat/{{id}}"><li class="mainCategory_sub">{{name}}</li></a>
+  <a href="/cat/{{id}}">
+    <li class="mainCategory_sub">{{name}}</li>
+  </a>
   {{/each}}
-</ul> 
+</ul>
 {{/each}}

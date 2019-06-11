@@ -65,3 +65,26 @@
     justify-content: space-between;
     padding-top: 10px;
 }
+.comment{
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+    .btn{
+        margin: 10px 0;
+        width: 200px;
+    }
+}
+.headMain{
+    display: flex;
+    justify-content: space-between;
+}
+.search{
+    display: flex;
+    align-items: center;
+    .btn{
+        margin-left: 10px;
+    }
+}
+nav{
+    margin-bottom: 10px;
+}

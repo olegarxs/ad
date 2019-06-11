@@ -82,7 +82,7 @@ router.get('/', (req, res) => {
 
 router.get('/cat/:id',(req, res) =>{
     const id = req.params.id;
-    connection.query(`Select * from posts WHERE cat_id=${id}`,(err, data) =>{
+    connection.query(`Select * from posts WHERE cat_id=${id} order by date DESC`,(err, data) =>{
         connection.query(`Select * from categories WHERE id=${id}`,(err, cat) =>{
             const nameCategory = cat[0].title;
             
@@ -104,13 +104,16 @@ router.get('/post/:id', (req, res) =>{
         connection.query(`Select * from users WHERE id=${user_id}`,(err, users) =>{
             const userPost = users[0];
             
-
-            if(req.isAuthenticated()){
-                const user = req.user;
-                res.render('post',{post,userPost,user});
-            }else{
-                res.render('post',{post,userPost});
-            }
+            connection.query(`SELECT comments.*, users.username FROM comments LEFT JOIN users ON comments.user_id = users.id where post_id =${id}`,
+            (err, allComments)=>{
+                console.log(allComments);
+                if(req.isAuthenticated()){
+                    const user = req.user;
+                    res.render('post',{post,userPost,allComments,user});
+                }else{
+                    res.render('post',{post,userPost,allComments});
+                }
+            })
         });
     });
 });
@@ -206,8 +209,31 @@ router.post('/addPost', (req, res) => {
             res.redirect(`/post/${data[data.length-1].id}`); 
         })
     });
-    
+})
 
+router.post('/post/addComment/:id', (req, res) => {
+    const idUser = req.user.id;
+    const idPost = req.params.id;
+    const message = req.body.comment;
+    connection.query(`INSERT INTO comments (user_id, post_id, message) VALUES ('${idUser}', '${idPost}', '${message}')`,
+    (err, data) => {
+        if(err) console.log(err);
+
+        res.redirect(`/post/${idPost}`);
+    })
+});
+
+router.post('/search', (req, res) => {
+    const keyWord = req.body.search;
+    connection.query(`SELECT * FROM posts where description LIKE '%${keyWord}%' or title Like '%${keyWord}%' order by date DESC`, (err, data) =>{
+        if(err) return console.log(err);
+        console.log(data)
+        res.render('search', {data})
+    })
+});
+
+router.get('/search', (req, res) => {
+    res.render('search');
 })
 
 module.exports = router;

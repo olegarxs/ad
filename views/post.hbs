@@ -1,37 +1,43 @@
-
 <div class="row">
   <div class="col-sm-4">
     <div class="card">
       <div class="card-body">
-          {{#with userPost}}
+        {{#with userPost}}
         <h5 class="card-title">Фото</h5>
         <p class="card-text">{{username}}</p>
         {{!-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
-      {{/with}}
+        {{/with}}
       </div>
     </div>
   </div>
-  {{#with post}}
+
   <div class="col-sm-8">
     <div class="card">
+      {{#with post}}
       <div class="card-body">
         <h5 class="card-title">{{title}}</h5>
         <p class="card-text">{{description}}</p>
         <a href="#" class="btn btn-primary">Удалить</a>
       </div>
     </div>
-    <form class="comment" action="" method="POST">
-    <label for="">Добавить комментарий:</label>
-    <textarea name="comment"></textarea>
-    <input type="submit" value="Дабваить" class="btn btn-primary">
+    <form class="comment" action="/post/addComment/{{id}}" method="POST">
+      <label for="">Добавить комментарий:</label>
+      <textarea name="comment"></textarea>
+      <input type="submit" value="Дабавить" class="btn btn-primary">
     </form>
+    {{/with}}
     <div class="allComments">
       {{#each allComments}}
-      <div class="">
-        <p></p>
+      <div class="card">
+        <div class="card-body">
+          <a href="">{{username}}</a>
+          <p>{{message}}</p>
+          {{#intl locales="ru-BY"}}
+          <pre>{{formatRelative date}}</pre>
+          {{/intl}}
+        </div>
       </div>
       {{/each}}
     </div>
   </div>
 </div>
-{{/with}}
