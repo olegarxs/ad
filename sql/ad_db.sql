@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3307
--- Время создания: Июн 10 2019 г., 17:16
+-- Время создания: Июн 11 2019 г., 18:25
 -- Версия сервера: 10.3.13-MariaDB
 -- Версия PHP: 7.1.22
 
@@ -78,7 +78,9 @@ INSERT INTO `categories` (`id`, `title`, `parent_id`) VALUES
 (4, 'Ноутбуки. Компьютеры. Apple. Оргтехника', NULL),
 (5, 'Ноутбуки', 4),
 (6, 'Планшеты и электронные книги', 4),
-(7, 'Apple. Mac. iPod. iPhone. iPad', 4);
+(14, 'Авто. Мото', NULL),
+(15, 'Легковые автомобили', 14),
+(16, 'Грузовые автомобили и прицепы', 14);
 
 -- --------------------------------------------------------
 
@@ -90,9 +92,16 @@ CREATE TABLE `comments` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `post_id` int(11) NOT NULL,
-  `date` date DEFAULT NULL,
+  `date` datetime NOT NULL DEFAULT current_timestamp(),
   `message` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `comments`
+--
+
+INSERT INTO `comments` (`id`, `user_id`, `post_id`, `date`, `message`) VALUES
+(1, 1, 1, '2019-06-11 18:10:45', 'Класс');
 
 -- --------------------------------------------------------
 
@@ -128,7 +137,8 @@ INSERT INTO `posts` (`id`, `cat_id`, `title`, `user_id`, `description`, `date`, 
 (9, 5, 'Lenovo z510', 1, 'Ноутбук с 2013 года. Один владелец', '2019-06-09 22:23:43', 'продам', 400, NULL),
 (10, 2, 'Nokia 5820', 1, 'Новый', '2019-06-09 22:30:18', 'продам', 23, NULL),
 (11, 5, 'Xiaomi Air', 1, 'Привезен из Америки в пленке', '2019-06-09 22:32:52', 'продам', 2400, NULL),
-(12, 3, 'Iphone 4 на запчасти', 1, 'продам Iphone 4 на запчасти', '2019-06-09 22:33:37', 'продам', 100, NULL);
+(12, 3, 'Iphone 4 на запчасти', 1, 'продам Iphone 4 на запчасти', '2019-06-09 22:33:37', 'продам', 100, NULL),
+(13, 2, 'Илона', 1, 'Не бита не крашена', '2019-06-11 16:50:57', 'продам', 10000, NULL);
 
 -- --------------------------------------------------------
 
@@ -273,19 +283,19 @@ ALTER TABLE `banlist`
 -- AUTO_INCREMENT для таблицы `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT для таблицы `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT для таблицы `profiles`

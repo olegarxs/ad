@@ -1,6 +1,32 @@
 <div class="admin-panel container">
 {{> buttonsAdmin}}
     <div class="main container">
+       
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Логин</th>
+                    <th scope="col" style="">email</th>
+                    <th scope="col" style="text-align: center">Профиль</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {{#each users}}
+                    <tr>
+                        <td>{{id}}</td>
+                        <td>{{username}}</td>
+                        <td>{{email}}</td>
+                        
+                        <td style="text-align: center">    
+                            <form action="./delete/{{id}}" method="POST">
+                            <input type="Submit" class="btn btn-info" value="Профиль">
+                            </form> 
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
         
     </div>
 </div>

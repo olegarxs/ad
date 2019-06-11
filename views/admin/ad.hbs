@@ -2,5 +2,33 @@
 {{> buttonsAdmin}}
     <div class="main container">
         
+        <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Объявление</th>
+                    <th scope="col" style="">Стоимость</th>
+                    <th scope="col" style="text-align: center">Редактирование</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {{#each posts}}
+                    <tr>
+                        <td>{{id}}</td>
+                        <td>
+                            <h5>{{title}}</h5>
+                            <h6>{{description}}</h6>
+                        </td>
+                        <td>{{cost}}</td>
+                        <td style="text-align: center">    
+                            <form action="./delete/{{id}}" method="POST">
+                            <input type="Submit" class="btn btn-info" value="Редактировать">
+                            </form> 
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+
     </div>
 </div>

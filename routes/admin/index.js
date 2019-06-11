@@ -18,13 +18,18 @@ const connection = mysql.createPool({
 
 
 router.get('/',(req, res) => {
-
-    connection.query('select * from categories', (err, category) => {        
-        if(err) {
-            return console.log(err);
-        }
-        res.render('./admin/allCategory',{category});
-    })
+    if(req.isAuthenticated()){
+        const user = req.user;
+        connection.query('select * from categories', (err, category) => {        
+            if(err) {
+                return console.log(err);
+            }
+            res.render('./admin/allCategory',{category,user});
+        })
+    }else{
+        res.redirect('/');
+    }
+    
 });
 
 router.post('/delete/:id', (req, res) => {
@@ -34,17 +39,17 @@ router.post('/delete/:id', (req, res) => {
         if(err) {
             console.log(err);
         }
-        res.redirect('/');
+        res.redirect('../');
     })
 });
 
 router.get('/addCategory', (req,res) =>{
+    const user = req.user;
     connection.query('select * from categories where parent_id IS null', (err, category) => {
-        
         if(err) {
             return console.log(err);
         }
-        res.render('./admin/addCategory',{category});
+        res.render('./admin/addCategory',{category,user});
     })      
 });
 
@@ -54,20 +59,39 @@ router.post('/addCategory',(req,res) =>{
     const parent = req.body.parent;
       
     connection.query(`select * from categories where title = "${parent}"`, (err, data) => {
-        connection.query(`INSERT INTO categories (title, parent_id) VALUES ('${title}', "${data[0].id == null? null:data[0].id }")`, (err, result) => {
-            if(err){
-                return console.log(err);
-            }
-            res.redirect('./');
-        })
+        if(data[0] == null){
+            connection.query(`INSERT INTO categories (title) VALUES ('${title}')`, (err, result) => {
+                if(err){
+                    return console.log(err);
+                }
+                res.redirect('./');
+            }) 
+        }else{
+            connection.query(`INSERT INTO categories (title, parent_id) VALUES ('${title}', "${data[0].id == null? null:data[0].id }")`, (err, result) => {
+                if(err){
+                    return console.log(err);
+                }
+                res.redirect('./');
+            })
+        } 
 })});
 
 router.get('/users', (req, res) => {
-    res.render('./admin/users');
+    const user = req.user;
+    connection.query('select id, username, email, profile_id from users', (err, users) => {
+        res.render('./admin/users',{users, user});
+    })
 });
 
 router.get('/ad', (req, res) => {
-    res.render('./admin/ad')
+    const user = req.user;
+    connection.query('select * from posts', (err, posts) => {
+        if(err){
+           return console.log(err);
+        }
+        res.render('./admin/ad', {posts, user})
+
+    })
 })
 
 

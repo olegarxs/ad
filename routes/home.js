@@ -7,7 +7,7 @@ const handlebars = require('handlebars');
 const mysql = require('mysql2');
 const HandlebarsIntl = require('handlebars-intl');
 const db = require('./../config/db');
-const passport = require('passport')
+const passport = require('passport');
 
 
 

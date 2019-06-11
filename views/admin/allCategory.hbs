@@ -3,8 +3,6 @@
   <div class="main container">
     <div class="button-group">
       <a type="button" class="btn btn-success" href="/admin/addCategory">Добавить</a>
-      <button type="button" class="btn btn-warning">Редактировать</button>
-      <button type="button" class="btn btn-danger">Удалить</button>
     </div>
     <div class="">
         <table class="table">
@@ -26,14 +24,11 @@
                     {{else}}
                       <td style="text-align: center">-</td>
                     {{/if}}
-                    <td style="text-align: center">
-                      <span class="fa fa-pencil"></span>  
-                      <span class="">
-                        <form action="/delete/{{id}}" method="POST">
-                        
-                        <input type="Submit" class="fa fa-trash-o" value="">
+                    <td style="text-align: center">    
+                        <form action="./delete/{{id}}" method="POST">
+                          <input type="Submit" class="btn btn-danger" value="Удалить">
                         </form> 
-                      </span></td>
+                      </td>
                   </tr>
                 {{/each}}
             </tbody>

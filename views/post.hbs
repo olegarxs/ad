@@ -20,6 +20,18 @@
         <a href="#" class="btn btn-primary">Удалить</a>
       </div>
     </div>
+    <form class="comment" action="" method="POST">
+    <label for="">Добавить комментарий:</label>
+    <textarea name="comment"></textarea>
+    <input type="submit" value="Дабваить" class="btn btn-primary">
+    </form>
+    <div class="allComments">
+      {{#each allComments}}
+      <div class="">
+        <p></p>
+      </div>
+      {{/each}}
+    </div>
   </div>
 </div>
 {{/with}}
