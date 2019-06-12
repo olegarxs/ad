@@ -31,6 +31,7 @@
   <div class="entry-button">
     {{#if user}}
     <a href="/profile/{{user.id}}">{{user.username}}</a>
+    <a href="/logOut" class="fa fa-sign-out" style="padding-left:10px"></a>
     {{else}}
     <a href="/login" class="btn btn-outline-primary">Вход</a>
     <a href="/registration" class="btn btn-primary">Регистрация</a>

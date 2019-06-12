@@ -100,16 +100,17 @@ router.get('/post/:id', (req, res) =>{
     const id = req.params.id;
     connection.query(`Select * from posts WHERE id=${id}`,(err, data) =>{
         const post = data[0];
-        const user_id = data[0].user_id
+        const user_id = data[0].user_id;
         connection.query(`Select * from users WHERE id=${user_id}`,(err, users) =>{
             const userPost = users[0];
             
             connection.query(`SELECT comments.*, users.username FROM comments LEFT JOIN users ON comments.user_id = users.id where post_id =${id}`,
             (err, allComments)=>{
-                console.log(allComments);
                 if(req.isAuthenticated()){
                     const user = req.user;
-                    res.render('post',{post,userPost,allComments,user});
+                   
+                    post.user = user;
+                    res.render('post',{post, userPost, allComments, user});
                 }else{
                     res.render('post',{post,userPost,allComments});
                 }
@@ -186,7 +187,6 @@ router.get('/profile/:id', (req, res) => {
 
 router.get('/addPost/cat/:id', (req, res) => {
     req.session.catId = req.params.id;
-    console.log(req.session.idid);
     catIdD = req.params.id;
     res.render('addPost');
 })
@@ -211,6 +211,38 @@ router.post('/addPost', (req, res) => {
     });
 })
 
+router.get('/post/editPost/:id', (req, res) => {
+    const id = req.params.id;
+    connection.query(`select * from posts where id='${id}'`, (err, posts) =>{
+        const post = posts[0];
+        res.render('editPost', {post, id});
+    })
+});
+
+router.post('/post/editPost/:id', (req, res) => {
+    const id = req.params.id;
+    const title = req.body.title;
+    const description = req.body.description;
+    connection.query(`
+    update posts SET
+    title="${title}",
+    description="${description}"
+    where id="${id}"`, (err, posts) =>{
+        if(err) return console.log(err);
+      
+        res.redirect(`/post/${id}`);
+    })
+})
+
+
+router.post('/post/deletePost/:id', (req, res) => {
+    const id = req.params.id;
+    connection.query(`delete from posts where id="${id}"`,err => {
+        if(err) return console.log(err);
+        res.redirect('/');
+    })
+})
+
 router.post('/post/addComment/:id', (req, res) => {
     const idUser = req.user.id;
     const idPost = req.params.id;
@@ -227,13 +259,18 @@ router.post('/search', (req, res) => {
     const keyWord = req.body.search;
     connection.query(`SELECT * FROM posts where description LIKE '%${keyWord}%' or title Like '%${keyWord}%' order by date DESC`, (err, data) =>{
         if(err) return console.log(err);
-        console.log(data)
+       
         res.render('search', {data})
     })
 });
 
 router.get('/search', (req, res) => {
     res.render('search');
+})
+
+router.get('/logOut', (req, res) => {
+    req.logout();
+    res.redirect('/');
 })
 
 module.exports = router;

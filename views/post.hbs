@@ -17,16 +17,27 @@
       <div class="card-body">
         <h5 class="card-title">{{title}}</h5>
         <p class="card-text">{{description}}</p>
-        <a href="#" class="btn btn-primary">Удалить</a>
+        
+        <div class="buttonPost">
+          <form action="/post/editPost/{{id}}" method="get">
+            <input type="submit" value="Редактировать" class="btn btn-primary btn-sm">
+          </form>
+          <form action="/post/deletePost/{{id}}" method="post">
+            <input type="submit" value="Удалить" class="btn btn-danger btn-sm">
+          </form>
+        </div>
       </div>
     </div>
+    {{#if user}}
     <form class="comment" action="/post/addComment/{{id}}" method="POST">
       <label for="">Добавить комментарий:</label>
       <textarea name="comment"></textarea>
       <input type="submit" value="Дабавить" class="btn btn-primary">
     </form>
+    {{/if}}
     {{/with}}
     <div class="allComments">
+      <h4>Комментарии:</h4>
       {{#each allComments}}
       <div class="card">
         <div class="card-body">

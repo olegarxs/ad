@@ -95,6 +95,4 @@ router.get('/ad', (req, res) => {
 })
 
 
-
-
 module.exports = router;
