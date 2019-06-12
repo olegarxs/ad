@@ -88,3 +88,13 @@
 nav{
     margin-bottom: 10px;
 }
+.buttonPost{
+    display:flex;
+    .btn{
+        margin-right: 10px;
+    }
+}
+
+.editPost{
+    background: red;
+}

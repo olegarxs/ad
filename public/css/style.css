@@ -146,4 +146,18 @@
 nav {
   margin-bottom: 10px;
 }
+
+.buttonPost {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.buttonPost .btn {
+  margin-right: 10px;
+}
+
+.editPost {
+  background: red;
+}
 /*# sourceMappingURL=style.css.map */
