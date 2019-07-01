@@ -8,6 +8,7 @@ const mysql = require('mysql2');
 const HandlebarsIntl = require('handlebars-intl');
 const db = require('./../config/db');
 const passport = require('passport');
+const fileUpload = require('../module/fileUpload');
 
 
 
@@ -271,6 +272,20 @@ router.get('/search', (req, res) => {
 router.get('/logOut', (req, res) => {
     req.logout();
     res.redirect('/');
+})
+
+router.post('/test',fileUpload.single('photo'), (req, res) => {
+    const fileData = req.file;
+
+    if(!fileData){
+        console.log(fileData);
+        
+        res.send('Упс, что-то пошло не так');
+    }else{
+        console.log(fileData);
+
+        res.send('все успешно загружено')
+    }
 })
 
 module.exports = router;
