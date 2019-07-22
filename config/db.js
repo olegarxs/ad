@@ -40,10 +40,14 @@ db.findUserById = (user, successCallback, failureCallback) => {
 })};
 
 db.addUser = (user) => {
-    const createProfile = `INSERT INTO profiles (first_name, last_name, birthday) VALUES ('${user.firstName}', '${user.lastName}', '${user.birthDay}')`;
+    const createProfile = `INSERT INTO profiles (first_name, last_name, photo, birthday) 
+        VALUES ('${user.firstName}', '${user.lastName}', '${user.photo}', '${user.birthDay}')`;
     const maxProfileId = `SELECT MAX(id) FROM profiles`;
     
-    connection.query(createProfile, res =>{
+    connection.query(createProfile, (err,res) =>{
+        if(err){
+            return console.log(err)
+        }
         console.log('Its ok');
         
     });
@@ -53,7 +57,8 @@ db.addUser = (user) => {
         }else{
             let obj = rows[0];
             let key = Object.keys(obj);
-            connection.query(`INSERT INTO users (username, password, email, profile_id) VALUES ('${user.username}', '${user.password}', '${user.email}', '${obj[key[0]]}')`);
+            connection.query(`INSERT INTO users (username, password, email, profile_id)
+                 VALUES ('${user.username}', '${user.password}', '${user.email}', '${obj[key[0]]}')`);
         }
     }); 
 }

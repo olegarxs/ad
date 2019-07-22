@@ -9,7 +9,7 @@ const HandlebarsIntl = require('handlebars-intl');
 const db = require('./../config/db');
 const passport = require('passport');
 const fileUpload = require('../module/fileUpload');
-
+const path = require('path');
 
 
 
@@ -144,13 +144,14 @@ router.get('/registration', (req, res) => {
 })
 
 
-router.post('/registration', (req, res) => {
+router.post('/registration',fileUpload.single('photo'), (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
     const email = req.body.email;
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
     const birthDay = req.body.birthDay;
+    const fileData = req.file.originalname;
 
     db.addUser({
         username: username,
@@ -158,7 +159,8 @@ router.post('/registration', (req, res) => {
         email: email,
         firstName: firstName,
         lastName: lastName,
-        birthDay: birthDay    
+        birthDay: birthDay,
+        photo: fileData  
     })
     res.redirect('/login');
 
@@ -272,20 +274,6 @@ router.get('/search', (req, res) => {
 router.get('/logOut', (req, res) => {
     req.logout();
     res.redirect('/');
-})
-
-router.post('/test',fileUpload.single('photo'), (req, res) => {
-    const fileData = req.file;
-
-    if(!fileData){
-        console.log(fileData);
-        
-        res.send('Упс, что-то пошло не так');
-    }else{
-        console.log(fileData);
-
-        res.send('все успешно загружено')
-    }
 })
 
 module.exports = router;
