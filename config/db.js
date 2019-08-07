@@ -2,17 +2,19 @@ const mysql = require('mysql2');
 
 const db = {};
 
-const connection = mysql.createPool({
+db.connection = mysql.createPool({
+    connectionLimit: 5,
     host: 'localhost',
-    user: 'root',
+    user: 'olegarxs',
     database: 'ad_db',
-    password: '',
-    port: '3307'
+    password: '6812387',
+    port: '3306'
 });
+
 
 db.findUserByUsername = (user, successCallback, failureCallback) => {
     var sqlQuery = `Select * from users WHERE username="${user.username}"`;
-    connection.query(sqlQuery, function (err, rows, fields, res) {
+    db.connection.query(sqlQuery, function (err, rows, fields, res) {
         if (err) {
             failureCallback(err);
             return;
@@ -27,7 +29,7 @@ db.findUserByUsername = (user, successCallback, failureCallback) => {
 
 db.findUserById = (user, successCallback, failureCallback) => {
     var sqlQuery = `Select * from users WHERE id="${user.id}"`;
-    connection.query(sqlQuery, function (err, rows) {
+    db.connection.query(sqlQuery, function (err, rows) {
         if (err) {
             failureCallback(err);
             return;
@@ -44,20 +46,20 @@ db.addUser = (user) => {
         VALUES ('${user.firstName}', '${user.lastName}', '${user.photo}', '${user.birthDay}')`;
     const maxProfileId = `SELECT MAX(id) FROM profiles`;
     
-    connection.query(createProfile, (err,res) =>{
+    db.connection.query(createProfile, (err,res) =>{
         if(err){
             return console.log(err)
         }
         console.log('Its ok');
         
     });
-    connection.query(maxProfileId, (err, rows) =>{
+    db.connection.query(maxProfileId, (err, rows) =>{
         if(err){
             console.log(err);
         }else{
             let obj = rows[0];
             let key = Object.keys(obj);
-            connection.query(`INSERT INTO users (username, password, email, profile_id)
+            db.connection.query(`INSERT INTO users (username, password, email, profile_id)
                  VALUES ('${user.username}', '${user.password}', '${user.email}', '${obj[key[0]]}')`);
         }
     }); 

@@ -34,13 +34,7 @@ HandlebarsIntl.registerWith(handlebars);
 // router.use(passport.session());
 // const Category = require('../models/Category');
 
-const connection = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    database: 'ad_db',
-    password: '',
-    port: '3307'
-});
+const connection = db.connection;
 
 
 

@@ -5,16 +5,11 @@ const hbs = require('hbs');
 const expressHbs = require("express-handlebars");
 const handlebars = require('handlebars');
 const mysql = require('mysql2');
+const db = require('./../../config/db')
 
 const Category = require('../../models/Category');
 
-const connection = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    database: 'ad_db',
-    password: '',
-    port: '3307'
-});
+const connection = db.connection;
 
 
 router.get('/',(req, res) => {

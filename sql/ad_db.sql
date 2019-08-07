@@ -155,7 +155,7 @@ CREATE TABLE `profiles` (
   `last_name` varchar(20) NOT NULL,
   `photo` varchar(30) DEFAULT NULL,
   `birthday` date DEFAULT NULL,
-  `dateOfRegistration` date DEFAULT current_timestamp()
+  `dateOfRegistration` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
