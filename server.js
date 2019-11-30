@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-// const mongoose = require('mongoose');
 const expressHbs = require("express-handlebars");
 const mysql = require('mysql2');
 const passport = require('passport');
@@ -8,14 +7,9 @@ const home = require('./routes/home');
 const admin = require('./routes/admin/index')
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
-const db = require('./config/db')
-// //connect MongoDB
-// mongoose
-//     .connect(db)
-//     .then(() => console.log('MongoDB Connected'))
-//     .catch(err => console.log(err));
+// const db = require('./config/db');
 
-const connection = db.connection;
+// const connection = db.connection;
 
 
 

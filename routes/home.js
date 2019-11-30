@@ -145,7 +145,7 @@ router.post('/registration',fileUpload.single('photo'), (req, res) => {
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
     const birthDay = req.body.birthDay;
-    const fileData = req.file.originalname;
+    const fileData =  req.file.filename + path.extname(req.file.originalname);
 
     db.addUser({
         username: username,
