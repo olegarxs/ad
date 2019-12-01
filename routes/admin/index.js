@@ -1,13 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const ad = require('../../models/Advertisement');
 const hbs = require('hbs');
 const expressHbs = require("express-handlebars");
 const handlebars = require('handlebars');
 const mysql = require('mysql2');
 const db = require('./../../config/db')
 
-const Category = require('../../models/Category');
 
 const connection = db.connection;
 

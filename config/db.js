@@ -2,7 +2,7 @@ const mysql = require('mysql2');
 
 const db = {};
 
-db.connection = mysql.createPool({
+db.connection = mysql.createConnection({
     connectionLimit: 5,
     host: 'localhost',
     user: 'olegarxs',
@@ -10,6 +10,14 @@ db.connection = mysql.createPool({
     password: '6812387',
     port: '3306'
 });
+
+db.connection.connect(err =>{
+    if(err){
+        console.log(err);
+    }else{
+        console.log("Подключение к серверу MySQL успешно установлено");
+    }
+})
 
 
 db.findUserByUsername = (user, successCallback, failureCallback) => {

@@ -7,19 +7,15 @@ const home = require('./routes/home');
 const admin = require('./routes/admin/index')
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
-// const db = require('./config/db');
+const db = require('./config/db');
 
-// const connection = db.connection;
+const connection = db.connection;
 
 
 
-// connection.connect(err =>{
-//     if(err){
-//         console.log(err);
-//     }else{
-//         console.log("Подключение к серверу MySQL успешно установлено");
-//     }
-// })
+
+
+
 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
