@@ -10,6 +10,7 @@ const db = require('./../config/db');
 const passport = require('passport');
 const fileUpload = require('../module/fileUpload');
 const path = require('path');
+const fs = require('fs')
 
 
 
@@ -32,7 +33,6 @@ HandlebarsIntl.registerWith(handlebars);
 // require('./../config/passport');
 // router.use(passport.initialize());
 // router.use(passport.session());
-// const Category = require('../models/Category');
 
 const connection = db.connection;
 
@@ -121,7 +121,7 @@ router.get('/login', (req, res) => {
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', function(err, user) {
         if (err) { return next(err); }
-        if (!user) { return res.send('Укажите правильный имэил или пароль'); }
+        if (!user) { return res.render('login',{error:'Укажите правильный логин или пароль'}); }
         req.logIn(user, function(err) {
           if (err) { return next(err); }
           return res.redirect('/');
@@ -145,7 +145,7 @@ router.post('/registration',fileUpload.single('photo'), (req, res) => {
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
     const birthDay = req.body.birthDay;
-    const fileData =  req.file.filename + path.extname(req.file.originalname);
+    const fileData =  req.file.filename;
 
     db.addUser({
         username: username,
@@ -177,7 +177,9 @@ router.get('/profile/:id', (req, res) => {
         } else {
             const profile = data[0];
             const user = req.user;
-            res.render('profile', {profile, user});    
+            const photo = profile.photo ? `../upload/${profile.photo}`: null;
+            console.log(photo)
+            res.render('profile', {profile, user, photo});    
         }
     })    
 });
@@ -268,6 +270,12 @@ router.get('/search', (req, res) => {
 router.get('/logOut', (req, res) => {
     req.logout();
     res.redirect('/');
+})
+
+router.get('/upload/:id', (req, res) =>{
+    var filename = req.params.id;
+    console.log()
+    res.sendFile(path.normalize(__dirname + `/../upload/${filename}`));
 })
 
 module.exports = router;

@@ -1,5 +1,6 @@
-
-
+{{#if photo}}
+<img src="{{photo}}" class="mr-3" alt="">
+{{/if}}
 <p>{{user.username}}</p>
 <p>Почта: {{user.email}}</p>
 {{#with profile}}

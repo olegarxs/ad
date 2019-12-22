@@ -1,4 +1,9 @@
 <form class="login-form" method="POST" action="/login">
+{{#if error}}
+<div class="alert alert-danger" role="alert">
+  {{error}}
+</div>
+{{/if}}
   <div class="form-group">
     <label for="login">Логин:</label>
     <input type="text" class="form-control" name="username" aria-describedby="emailHelp" placeholder="Логин">

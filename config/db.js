@@ -30,7 +30,7 @@ db.findUserByUsername = (user, successCallback, failureCallback) => {
         if (rows.length > 0) {
             successCallback(rows[0])
         } else {
-            failureCallback('User not found.');
+            failureCallback(null)
         }
 })};
 
