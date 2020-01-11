@@ -160,4 +160,15 @@ nav {
 .editPost {
   background: red;
 }
+
+.profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.profile .photo {
+  max-width: 150px;
+  max-height: 150px;
+}
 /*# sourceMappingURL=style.css.map */

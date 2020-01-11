@@ -1,10 +1,16 @@
-{{#if photo}}
-<img src="{{photo}}" class="mr-3" alt="">
-{{/if}}
-<p>{{user.username}}</p>
-<p>Почта: {{user.email}}</p>
-{{#with profile}}
-<p>Фамилия и имя: {{first_name}} {{last_name}}</p>
-<p>Дата рождения: {{formatDate birthday day="numeric" month="numeric" year="numeric"}}</p>
-<p>Дата регистрации: {{formatDate dateOfRegistration day="numeric" month="numeric" year="numeric"}}</p>
-{{/with}}
+<div class="profile">
+    {{#if photo}}
+    <div class="box">
+        <img src="{{photo}}" class="mr-3 photo img-thumbnail" alt="">
+        </div>
+    {{/if}}
+    <div class="info">
+        <b>{{user.username}}</b>
+        <p>Почта: {{user.email}}</p>
+        {{#with profile}}
+        <p>Фамилия и имя: {{first_name}} {{last_name}}</p>
+        <p>Дата рождения: {{formatDate birthday day="numeric" month="numeric" year="numeric"}}</p>
+        <p>Дата регистрации: {{formatDate dateOfRegistration day="numeric" month="numeric" year="numeric"}}</p>
+        {{/with}}
+    </div>
+</div>

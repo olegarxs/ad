@@ -98,3 +98,11 @@ nav{
 .editPost{
     background: red;
 }
+
+.profile{
+    .photo{
+        max-width: 150px;
+        max-height: 150px;
+    }
+    display: flex;
+}

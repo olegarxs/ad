@@ -256,7 +256,7 @@ router.post('/post/addComment/:id', (req, res) => {
 
 router.post('/search', (req, res) => {
     const keyWord = req.body.search;
-    connection.query(`SELECT * FROM posts where description LIKE '%${keyWord}%' or title Like '%${keyWord}%' order by date DESC`, (err, data) =>{
+    connection.query(`SELECT * FROM posts where description REGEXP '${keyWord}' or title REGEXP '${keyWord}' order by date DESC`, (err, data) =>{
         if(err) return console.log(err);
        
         res.render('search', {data})
